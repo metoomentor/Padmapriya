@@ -1,0 +1,1773 @@
+  <html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Thiagarajar College</title>
+
+   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+
+    <ion-nav-view></ion-nav-view>
+
+    <script id="templates/event-menu.html" type="text/ng-template">
+      <ion-side-menus enable-menu-with-back-views="false">
+		
+        <ion-side-menu-content>
+		
+			<!--<ion-nav-bar  
+			<!--	type="bar-positive" class="button button-icon button-clear ion-navicon" 
+				<!-- back-button-type="button-icon" 
+				 <!--back-button-icon="ion-arrow-left-c"></ion-nav-bar>
+				 
+			<!--<ion-nav-view animation="slide-left-right"></ion-nav-view>-->
+
+		
+		
+		
+          <ion-nav-bar class="bar-positive" animation="nav-title-slide-ios7" back-button-icon="ion-arrow-left-c">
+           <!-- <ion-nav-back-button>-->
+            <!--</ion-nav-back-button>-->
+
+            <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+            </button>
+            </ion-nav-buttons>
+           </ion-nav-bar>
+
+          <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+        </ion-side-menu-content> 
+
+        <ion-side-menu side="left">
+          <ion-header-bar class="bar-assertive">
+            <h1 class="title">Menus</h1>
+          </ion-header-bar>
+          <ion-content>
+            <ul class="list">
+              <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
+              <a href="#/event/about" class="item" menu-close>About</a>
+              <a href="#/event/form" class="item" menu-close>Application Form</a>
+              <a href="#/event/attendees" class="item" menu-close>Status</a>
+            </ul>
+          </ion-content>
+        </ion-side-menu>
+
+    </ion-side-menus>
+    </script>
+
+    <script id="templates/about.html" type="text/ng-template">
+		<ion-view title="Thiagarajar College">
+			<ion-nav-buttons side="left">
+				<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+			</ion-nav-buttons>
+
+	  
+		<!--Header -->
+		<ion-content class="has-header">
+			<br><br>
+			<div class="card">
+
+				<center>
+					<img src="img/i2.png"/>
+					<h2>Thiagarajar College</h2>
+					<!--<p>Back off, man. I'm a scientist.</p>-->
+				</center>
+			</div>
+			
+		<div class="card">
+			The college has sixty five years of history behind it. It is a private and aided institution affiliated to Madurai Kamaraj University and managed by Kalaithanthai Karumuttu Thiagrajan Chettiar Memorial Trust. 
+
+			Employability, along with academic excellence, is the focal point of the college. It has undergone an appreciable and noteworthy change in all fields with an objective to spread quality education, fostering excellence in research and promoting academic inquiry. It has been recognized as a Research Centre of Excellence since 1978 and was upgraded as an autonomous institution in 1987. It was first accredited with Five Stars by National Assessment and Accreditation Council in 2001 and was Re-accredited with 'A' Grade in 2007.Our College was accredited with the Top grade for the third time in January 2013 as 'A' Grade with 3.37 CGPA by NAAC.
+		</div>
+		</ion-content>
+	</ion-view>
+
+    </script>
+
+    <script id="templates/form.html" type="text/ng-template">
+		<ion-view title="Admission form for UG and PG">
+			<ion-nav-buttons side="left">
+				<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+			</ion-nav-buttons>
+		
+		<ion-content>
+		<br>
+		<center>
+			<a ui-sref="eventmenu.ugregularpart1" class="button button-block button-positive">
+			UG Regular
+			</a>
+		</center>
+		<br>
+		<center>
+			<a ui-sref="eventmenu.ugselfpart1" class="button button-block button-positive">
+			UG Self-Finance
+			</a>
+		</center>
+		<br>
+		<center>
+			<a ui-sref="eventmenu.pgregularpart1" class="button button-block button-positive">
+			PG Regular
+			</a>
+		</center>
+		<br>
+		<center>
+			<a ui-sref="eventmenu.pgselfpart1" class="button button-block button-positive">
+			PG Self-Finance
+			</a>
+		</center>
+	  </ion-content>
+	</ion-view>
+
+    </script>
+	
+	<!-- UG Regular---------------------------------------------------------------------   -->
+	 <script id="templates/ugregularpart1.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+			<ion-nav-bar class="bar-positive">
+				<ion-nav-back-button class="button-clear">
+				<i class="ion-arrow-left-c"></i> Back
+				</ion-nav-back-button>
+			</ion-nav-bar>
+		
+		<ion-content>
+		<form name="ugForm1" novalidate>  
+		  <div class="list" ng-class="{ 'has-error' : ugForm1.fname.$invalid && !ugForm1.fname.$pristine }">
+			<label class="item item-input">
+				<span class="input-label">First name</span>
+				<input type="text"  name="fname" ng-model="user.fname" ng-minlength="2" ng-maxlength="30" required />
+				<p ng-show="ugForm1.fname.$invalid && !ugForm1.fname.$pristine" class="help-block">Your First name is required.</p>
+			</label>
+			<!--<p ng-show="ugForm1.fname.$invalid && !ugForm1.fname.$pristine" class="help-block">You name is required.</p>-->
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm1.lname.$invalid && !ugForm1.lname.$pristine }">
+				<span class="input-label">Last name</span>
+				<input type="text" name="lname" ng-model="user.lname" required/>
+				<p ng-show="ugForm1.lname.$invalid && !ugForm1.lname.$pristine" class="help-block">Your Last name is required.</p>
+			</label>
+			<label class="item item-input item-select">
+				<span class="input-label">Courses</span>
+				<select required>
+				<option>B.A(Tamil)</option>
+				<option>B.A(English)</option>
+				<option>B.A(Economics(Tamil Medium))</option>
+				<option selected>B.Sc(Computer Science)</option>
+				<option>B.Sc(Physics)</option>
+				<option>B.Sc(Chemistry)</option>
+				<option>B.Sc(Maths)</option>
+				<option>B.Sc(Botany)</option>
+				<option>B.Sc(Industrial Micro Biology)</option>
+				<option>B.Com</option>
+				<option>BBA</option>
+				</select>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Gender</span>
+				<input type="radio" name="gender" ng-model="user.gender" value="Male" ng-required="!user.gender">
+				<div class="item-content">
+				Male
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="gender" ng-model="user.gender" value="Female" ng-required="!user.gender">
+				<div class="item-content">
+				Female
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">DOB</span>
+				<input type="date" required/>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm1.email.$invalid && !ugForm1.email.$pristine }">
+				<span class="input-label">Email ID</span>
+				<input type="email"  name="email" ng-model="user.email" required/>
+				<p ng-show="ugForm1.email.$invalid && !ugForm1.email.$pristine" class="help-block">Enter a valid email.</p>
+			</label>
+			<label class="item item-input" ng-class="{'has-error : ugForm1.phone.$invalid'}">
+				<span class="input-label">Mobile Number</span>
+				<input type="text" ng-pattern="[789][0-9]{9}" ng-minlength="10" ng-maxlength="10" ng-model="user.phone" required/>
+			</label>
+			
+			  <!--<button class="button button-block button-positive" ng-click="openPart2()">Next</button>-->
+			  <a ui-sref="eventmenu.ugregularpart2" class="button button-block button-assertive" ng-disabled="ugForm1.$invalid">
+				Next
+			</a>
+		
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+
+    </script>
+	
+	<script id="templates/ugregularpart2.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+	  <ion-content>
+		<form name="ugForm2" novalidate>
+		  <div class="list">
+			<label class="item item-input item-select">
+				<!--<div class="input-label">
+				Courses
+				</div>-->
+				<span class="input-label">Community</span>
+				<select name="community" ng-model="user.community" ng-dropdown required>
+				<option ng-option value="bc">BC</option>
+				<option ng-option value="mbc">MBC</option>
+				<option ng-option value="sc">SC</option>
+				<option ng-option value="st">ST</option>
+				<option ng-option value="bc(m)" selected>BC(M)</option>
+				<option ng-option value="sc(a)">SC(A)</option>
+				<option ng-option value="fc">FC</option>
+				<option ng-option value="oc">OC</option>
+				<option ng-option value="dnt">DNT</option>
+				</select>
+			</label>
+			<label class="item item-input" id="sc" ng-if="user.community == 'sc'" >
+				<span class="input-label">SC Code Number</span>
+				<input type="number" name="code1" ng-model="user.code1" required/>
+				<p ng-show="ugForm2.code1.$invalid && !ugForm2.code1.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" id="st" ng-if="user.community == 'st'" >
+				<span class="input-label">ST Code Number</span>
+				<input type="number" name="code2" ng-model="user.code2" required/>
+				<p ng-show="ugForm2.code2.$invalid && !ugForm2.code2.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm2.native.$invalid && !ugForm2.native.$pristine }">
+				<span class="input-label">Native District</span>
+				<input type="text" name="native" ng-model="user.native" required/>
+				<p ng-show="ugForm2.native.$invalid && !ugForm2.native.$pristine" class="help-block">Your Native District is required.</p>
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Religion</span>
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Hindu
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Christian
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Muslim
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm2.nation.$invalid && !ugForm2.nation.$pristine }">
+				<span class="input-label">Nationality</span>
+				<input type="text" name="nation" ng-model="user.nation" required/>
+				<p ng-show="ugForm2.nation.$invalid && !ugForm2.nation.$pristine" class="help-block">Your Nationality is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm2.tounge.$invalid && !ugForm2.tounge.$pristine }">
+				<span class="input-label">Mother Tounge</span>
+				<input type="text" name="tounge" ng-model="user.tounge" required/>
+				<p ng-show="ugForm2.tounge.$invalid && !ugForm2.tounge.$pristine" class="help-block">Your Mother Tounge is required</p>
+			</label>
+			 <a ui-sref="eventmenu.ugregularpart3" class="button button-block button-assertive" ng-disabled="ugForm2.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+	</ion-view>
+    </script>
+	
+	
+	<script id="templates/ugregularpart3.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+		<ion-content>
+		<form name="ugForm3" novalidate>
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm3.address.$invalid && !ugForm3.address.$pristine }">
+				<span class="input-label">Address</span>
+				<textarea name="address" ng-model="user.address" required></textarea>
+				<p ng-show="ugForm3.address.$invalid && !ugForm3.address.$pristine" class="help-block">Your Address is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Pin Code</span>
+				<input type="number" ng-minlength="6" name="pincode" ng-model="user.pincode" required/>
+				<p ng-show="ugForm3.pincode.$invalid && !ugForm3.pincode.$pristine" class="help-block">Pincode is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm3.school.$invalid && !ugForm3.school.$pristine }">
+				<span class="input-label">Name of your School</span>
+				<input type="text" name="school" ng-model="user.school" required/>
+				<p ng-show="ugForm3.school.$invalid && !ugForm3.school.$pristine" class="help-block">Your School Name is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm3.location.$invalid && !ugForm3.location.$pristine }">
+				<span class="input-label">Location of your School</span>
+				<input type="text" name="location" ng-model="user.location" required/>
+				<p ng-show="ugForm3.location.$invalid && !ugForm3.location.$pristine" class="help-block">Your School Location is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Register Number</span>
+				<input type="number" name="rno" ng-model="user.rno" ng-minlength="6" ng-maxlength="10" required/>
+				<p ng-show="ugForm3.rno.$invalid && !ugForm3.rno.$pristine" class="help-block">Your Register Number is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">No Of Apperence</span>
+				<input type="number" ng-minlength="1" name="appear" ng-model="user.appear" required/>
+				<p ng-show="ugForm3.appear.$invalid && !ugForm3.appear.$pristine" class="help-block">Appearence is required</p>
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Stream</span>
+				<input type="radio" name="stream" ng-model="user.stream" value="Academic" ng-required="!user.stream">
+				<div class="item-content">
+				Academic
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="stream" ng-model="user.stream" value="Academic" ng-required="!user.stream">
+				<div class="item-content">
+				Vocational
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			 <a ui-sref="eventmenu.ugregularpart4" class="button button-block button-energized" ng-disabled="ugForm3.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugregularpart4.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+		<ion-content>
+		<form name="ugForm4" novalidate>
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.sp1.$invalid && !ugForm4.sp1.$pristine }">
+				<span class="input-label">Subject Title for Part1</span>
+				<input type="text" name="sp1" ng-model="user.sp1" required/>
+				<p ng-show="ugForm4.sp1.$invalid && !ugForm4.sp1.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.sp2.$invalid && !ugForm4.sp2.$pristine }">
+				<span class="input-label">Subject Title for Part2</span>
+				<input type="text" name="sp2" ng-model="user.sp2" required/>
+				<p ng-show="ugForm4.sp2.$invalid && !ugForm4.sp2.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.sp3.$invalid && !ugForm4.sp3.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp3" ng-model="user.sp3" required/>
+				<p ng-show="ugForm4.sp3.$invalid && !ugForm4.sp3.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.sp4.$invalid && !ugForm4.sp4.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp4" ng-model="user.sp4" required/>
+				<p ng-show="ugForm4.sp4.$invalid && !ugForm4.sp4.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.sp4.$invalid && !ugForm4.sp4.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp5" ng-model="user.sp5" required/>
+				<p ng-show="ugForm4.sp5.$invalid && !ugForm4.sp5.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.sp6.$invalid && !ugForm4.sp6.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp6" ng-model="user.sp6" required/>
+				<p ng-show="ugForm4.sp6.$invalid && !ugForm4.sp6.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.m1.$invalid && !ugForm4.m1.$pristine }">
+				<span class="input-label">Mark for Part1</span>
+				<input type="number" name="m1" ng-model="user.m1" required/>
+				<p ng-show="ugForm4.m1.$invalid && !ugForm4.m1.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.m2.$invalid && !ugForm4.m2.$pristine }">
+				<span class="input-label">Mark for Part2</span>
+				<input type="number" name="m2" ng-model="user.m2" required/>
+				<p ng-show="ugForm4.m2.$invalid && !ugForm4.m2.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm4.m3.$invalid && !ugForm4.m3.$pristine }">
+				<span class="input-label">Mark1 for Part3</span>
+				<input type="number" name="m3" ng-model="user.m3" required/>
+				<p ng-show="ugForm4.m3.$invalid && !ugForm4.m3.$pristine" class="help-block">Mark is required</p>
+			</label>
+			 <a ui-sref="eventmenu.ugregularpart5" class="button button-block button-energized" ng-disabled="ugForm4.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+		<script id="templates/ugregularpart5.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+	  <ion-content>
+		<form name="ugForm5">
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm5.m4.$invalid && !ugForm5.m4.$pristine }">
+				<span class="input-label">Mark2 for Part3</span>
+				<input type="number" name="m4" ng-model="user.m4" required/>
+				<p ng-show="ugForm5.m4.$invalid && !ugForm5.m4.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm5.m5.$invalid && !ugForm5.m5.$pristine }">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="number" name="m5" ng-model="user.m5" required/>
+				<p ng-show="ugForm5.m5.$invalid && !ugForm5.m5.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm5.m6.$invalid && !ugForm5.m6.$pristine }">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="number" name="m6" ng-model="user.m6" required/>
+				<p ng-show="ugForm5.m6.$invalid && !ugForm5.m6.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugForm5.total.$invalid && !ugForm5.total.$pristine }">
+				<span class="input-label">Total Mark </span>
+				<span>{{ ugForm5.user.m1 + ugForm5.user.m2 + ugForm5.user.m3 + user.m4 + user.m5 + user.m6 }} </span>
+				<!--<input type="number" name="total" ng-model="user.total" required/>
+				<p ng-show="ugForm5.total.$invalid && !ugForm5.total.$pristine" class="help-block">Mark is required</p>-->
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Any Sports Certificate</span>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					District
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					State
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					National
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					No
+				</li>
+			</ul>
+			</label>
+			<a ui-sref="eventmenu.ugregularpart6" class="button button-block button-balanced" ng-disabled="ugForm5.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugregularpart6.html" type="text/ng-template">
+		<ion-view title="UG Regular">
+	  <ion-content>
+		<form name="ugForm6" ng-submit="doLogin()" novalidate>
+		  <div class="list">
+			<label class="item item-radio">
+				<br><br><br>
+				<span class="input-label">Do you need Hostel Accommodation</span>
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				Yes
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				No
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" name="declare" ng-model="user.declare" value="Declaration" ng-required="!user.declare"/>
+					</label>
+					<br>
+				<br>
+					<div class="item-content">
+						<pre>I declare that the particulars given above are true.
+						I will abide by the rules and regulations of the College,if admitted.</pre>
+					</div>
+				<br>
+				<br>
+								
+				</li>
+				
+			</label>	
+			<!--<label class="item">
+			  <!--<button class="button button-block button-positive" ng-click="openPart6()">Next</button>-->
+			  <!--<button class="button button-block button-balanced" ng-submit="doLogin()" type="submit" ng-disabled="ugForm6.$invalid">Submit</button>
+			</label>-->
+			<a ui-sref="eventmenu.SuccessPage" class="button button-block button-balanced" ng-disabled="ugForm6.$invalid">
+				Submit
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+
+	</ion-view>
+    </script>	
+	<!-- UG Regular----------------------------------------------------------------------->
+
+	<!-- UG Self-Finance -->
+	
+	<script id="templates/ugselfpart1.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+			<ion-nav-bar class="bar-positive">
+				<ion-nav-back-button class="button-clear">
+				<i class="ion-arrow-left-c"></i> Back
+				</ion-nav-back-button>
+			</ion-nav-bar>
+		
+	  <ion-content>
+		<form name="ugsForm1" novalidate>  
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm1.fname.$invalid && !ugsForm1.fname.$pristine }">
+				<span class="input-label">First name</span>
+				<input type="text"  name="fname" ng-model="user.fname" ng-minlength="2" ng-maxlength="30" required />
+				<p ng-show="ugsForm1.fname.$invalid && !ugsForm1.fname.$pristine" class="help-block">Your First name is required.</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm1.lname.$invalid && !ugsForm1.lname.$pristine }">
+				<span class="input-label">Last name</span>
+				<input type="text" name="lname" ng-model="user.lname" required/>
+				<p ng-show="ugsForm1.lname.$invalid && !ugsForm1.lname.$pristine" class="help-block">Your Last name is required.</p>
+			</label>
+			<label class="item item-input item-select">
+				<span class="input-label">Courses</span>
+				<select required>
+				<option>B.A(English)</option>
+				<option>B.A(Economics(English Medium))</option>
+				<option>B.Sc(Computer Science)</option>
+				<option selected>B.Sc(Bio-Technology)</option>
+				<option>B.Sc(IT)</option>
+				<option>BCA</option>
+				<option>B.Com</option>
+				<option>BBA</option>
+				</select>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Gender</span>
+				<input type="radio" name="gender" ng-model="user.gender" value="Male" ng-required="!user.gender">
+				<div class="item-content">
+				Male
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="gender" ng-model="user.gender" value="Female" ng-required="!user.gender">
+				<div class="item-content">
+				Female
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">DOB</span>
+				<input type="date" required/>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm1.email.$invalid && !ugsForm1.email.$pristine }">
+				<span class="input-label">Email ID</span>
+				<input type="email"  name="email" ng-model="user.email" required/>
+				<p ng-show="ugsForm1.email.$invalid && !ugsForm1.email.$pristine" class="help-block">Enter a valid email.</p>
+			</label>
+			<label class="item item-input" ng-class="{'has-error : ugsForm1.phone.$invalid'}">
+				<span class="input-label">Mobile Number</span>
+				<input type="text" ng-pattern="[789][0-9]{9}" ng-minlength="10" ng-maxlength="10" ng-model="user.phone" required/>
+			</label>
+			
+			  <!--<button class="button button-block button-positive" ng-click="openPart2()">Next</button>-->
+			<a ui-sref="eventmenu.ugselfpart2" class="button button-block button-assertive" ng-disabled="ugsForm1.$invalid">
+				Next
+			</a>
+		
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+
+    </script>
+	
+
+	<script id="templates/ugselfpart2.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+		<div class="modal2">
+			<ion-header-bar class="bar bar-header bar-assertive">
+				
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="ugsForm2" novalidate>
+		  <div class="list">
+			<label class="item item-input item-select">
+				<!--<div class="input-label">
+				Courses
+				</div>-->
+				<span class="input-label">Community</span>
+				<select name="community" ng-model="user.community" ng-dropdown required>
+				<option ng-option value="bc">BC</option>
+				<option ng-option value="mbc">MBC</option>
+				<option ng-option value="sc">SC</option>
+				<option ng-option value="st">ST</option>
+				<option ng-option value="bc(m)" selected>BC(M)</option>
+				<option ng-option value="sc(a)">SC(A)</option>
+				<option ng-option value="fc">FC</option>
+				<option ng-option value="oc">OC</option>
+				<option ng-option value="dnt">DNT</option>
+				</select>
+			</label>
+			<label class="item item-input" id="sc" ng-if="user.community == 'sc'" >
+				<span class="input-label">SC Code Number</span>
+				<input type="number" name="code1" ng-model="user.code1" required/>
+				<p ng-show="ugsForm2.code1.$invalid && !ugsForm2.code1.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" id="st" ng-if="user.community == 'st'" >
+				<span class="input-label">ST Code Number</span>
+				<input type="number" name="code2" ng-model="user.code2" required/>
+				<p ng-show="ugsForm2.code2.$invalid && !ugsForm2.code2.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm2.native.$invalid && !ugsForm2.native.$pristine }">
+				<span class="input-label">Native District</span>
+				<input type="text" name="native" ng-model="user.native" required/>
+				<p ng-show="ugsForm2.native.$invalid && !ugsForm2.native.$pristine" class="help-block">Your Native District is required.</p>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Religion</span>
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Hindu
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Christian
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Muslim
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm2.nation.$invalid && !ugsForm2.nation.$pristine }">
+				<span class="input-label">Nationality</span>
+				<input type="text" name="nation" ng-model="user.nation" required/>
+				<p ng-show="ugsForm2.nation.$invalid && !ugsForm2.nation.$pristine" class="help-block">Your Nationality is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm2.tounge.$invalid && !ugsForm2.tounge.$pristine }">
+				<span class="input-label">Mother Tounge</span>
+				<input type="text" name="tounge" ng-model="user.tounge" required/>
+				<p ng-show="ugsForm2.tounge.$invalid && !ugsForm2.tounge.$pristine" class="help-block">Your Mother Tounge is required</p>
+			</label>
+			 <a ui-sref="eventmenu.ugselfpart3" class="button button-block button-assertive" ng-disabled="ugsForm2.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+	</ion-view>
+    </script>
+	
+	
+	<script id="templates/ugselfpart3.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+		<ion-content>
+		<form name="ugsForm3" novalidate>
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm3.address.$invalid && !ugsForm3.address.$pristine }">
+				<span class="input-label">Address</span>
+				<textarea name="address" ng-model="user.address" required></textarea>
+				<p ng-show="ugsForm3.address.$invalid && !ugsForm3.address.$pristine" class="help-block">Your Address is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Pin Code</span>
+				<input type="number" ng-minlength="6" name="pincode" ng-model="user.pincode" required/>
+				<p ng-show="ugsForm3.pincode.$invalid && !ugsForm3.pincode.$pristine" class="help-block">Pincode is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm3.school.$invalid && !ugsForm3.school.$pristine }">
+				<span class="input-label">Name of your School</span>
+				<input type="text" name="school" ng-model="user.school" required/>
+				<p ng-show="ugsForm3.school.$invalid && !ugsForm3.school.$pristine" class="help-block">Your School Name is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm3.location.$invalid && !ugsForm3.location.$pristine }">
+				<span class="input-label">Location of your School</span>
+				<input type="text" name="location" ng-model="user.location" required/>
+				<p ng-show="ugsForm3.location.$invalid && !ugsForm3.location.$pristine" class="help-block">Your School Location is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Register Number</span>
+				<input type="number" name="rno" ng-model="user.rno" ng-minlength="6" ng-maxlength="10" required/>
+				<p ng-show="ugsForm3.rno.$invalid && !ugsForm3.rno.$pristine" class="help-block">Your Register Number is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">No Of Apperence</span>
+				<input type="number" ng-minlength="1" name="appear" ng-model="user.appear" required/>
+				<p ng-show="ugsForm3.appear.$invalid && !ugsForm3.appear.$pristine" class="help-block">Appearence is required</p>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Stream</span>
+				<input type="radio" name="stream" ng-model="user.stream" value="Academic" ng-required="!user.stream">
+				<div class="item-content">
+				Academic
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="stream" ng-model="user.stream" value="Academic" ng-required="!user.stream">
+				<div class="item-content">
+				Vocational
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			 <a ui-sref="eventmenu.ugselfpart4" class="button button-block button-energized" ng-disabled="ugsForm3.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugselfpart4.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+		<ion-content>
+		<form name="ugsForm4" novalidate>
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.sp1.$invalid && !ugsForm4.sp1.$pristine }">
+				<span class="input-label">Subject Title for Part1</span>
+				<input type="text" name="sp1" ng-model="user.sp1" required/>
+				<p ng-show="ugsForm4.sp1.$invalid && !ugsForm4.sp1.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.sp2.$invalid && !ugsForm4.sp2.$pristine }">
+				<span class="input-label">Subject Title for Part2</span>
+				<input type="text" name="sp2" ng-model="user.sp2" required/>
+				<p ng-show="ugsForm4.sp2.$invalid && !ugsForm4.sp2.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.sp3.$invalid && !ugsForm4.sp3.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp3" ng-model="user.sp3" required/>
+				<p ng-show="ugsForm4.sp3.$invalid && !ugsForm4.sp3.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.sp4.$invalid && !ugsForm4.sp4.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp4" ng-model="user.sp4" required/>
+				<p ng-show="ugsForm4.sp4.$invalid && !ugsForm4.sp4.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.sp4.$invalid && !ugsForm4.sp4.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp5" ng-model="user.sp5" required/>
+				<p ng-show="ugsForm4.sp5.$invalid && !ugsForm4.sp5.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.sp6.$invalid && !ugsForm4.sp6.$pristine }">
+				<span class="input-label">Subject Title for Part3</span>
+				<input type="text" name="sp6" ng-model="user.sp6" required/>
+				<p ng-show="ugsForm4.sp6.$invalid && !ugsForm4.sp6.$pristine" class="help-block">Subject is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.m1.$invalid && !ugsForm4.m1.$pristine }">
+				<span class="input-label">Mark for Part1</span>
+				<input type="number" name="m1" ng-model="user.m1" required/>
+				<p ng-show="ugsForm4.m1.$invalid && !ugsForm4.m1.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.m2.$invalid && !ugsForm4.m2.$pristine }">
+				<span class="input-label">Mark for Part2</span>
+				<input type="number" name="m2" ng-model="user.m2" required/>
+				<p ng-show="ugsForm4.m2.$invalid && !ugsForm4.m2.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm4.m3.$invalid && !ugsForm4.m3.$pristine }">
+				<span class="input-label">Mark1 for Part3</span>
+				<input type="number" name="m3" ng-model="user.m3" required/>
+				<p ng-show="ugsForm4.m3.$invalid && !ugsForm4.m3.$pristine" class="help-block">Mark is required</p>
+			</label>
+			 <a ui-sref="eventmenu.ugselfpart5" class="button button-block button-energized" ng-disabled="ugsForm4.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+		<script id="templates/ugselfpart5.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+	  <ion-content>
+		<form name="ugsForm5">
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm5.m4.$invalid && !ugsForm5.m4.$pristine }">
+				<span class="input-label">Mark2 for Part3</span>
+				<input type="number" name="m4" ng-model="user.m4" required/>
+				<p ng-show="ugsForm5.m4.$invalid && !ugsForm5.m4.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm5.m5.$invalid && !ugsForm5.m5.$pristine }">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="number" name="m5" ng-model="user.m5" required/>
+				<p ng-show="ugsForm5.m5.$invalid && !ugsForm5.m5.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm5.m6.$invalid && !ugsForm5.m6.$pristine }">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="number" name="m6" ng-model="user.m6" required/>
+				<p ng-show="ugsForm5.m6.$invalid && !ugsForm5.m6.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : ugsForm5.total.$invalid && !ugsForm5.total.$pristine }">
+				<span class="input-label">Total Mark </span>
+				<span>{{ ugsForm5.user.m1 + ugsForm5.user.m2 + ugsForm5.user.m3 + user.m4 + user.m5 + user.m6 }} </span>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Any Sports Certificate</span>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					District
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					State
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					National
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					No
+				</li>
+			</ul>
+			</label>
+			<a ui-sref="eventmenu.ugselfpart6" class="button button-block button-balanced" ng-disabled="ugsForm5.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/ugselfpart6.html" type="text/ng-template">
+		<ion-view title="UG Self-Finance">
+	  <ion-content>
+		<form name="ugsForm6" ng-submit="doLogin()">
+		  <div class="list">
+			<label class="item item-radio">
+				<br><br><br>
+				<span class="input-label">Do you need Hostel Accommodation</span>
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				Yes
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				No
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" name="declare" ng-model="user.declare" value="Declaration" ng-required="!user.declare"/>
+					</label>
+					<br>
+				<br>
+					<div class="item-content">
+						<pre>I declare that the particulars given above are true.
+						I will abide by the rules and regulations of the College,if admitted.</pre>
+					</div>
+				<br>
+				<br>
+								
+				</li>
+				
+			</label>	
+			<!--<label class="item">
+			  <!--<button class="button button-block button-positive" ng-click="openPart6()">Next</button>-->
+			  <!--<button class="button button-block button-balanced" ng-submit="doLogin()" type="submit" ng-disabled="ugsForm6.$invalid">Submit</button>
+			</label>-->
+			<a ui-sref="eventmenu.SuccessPage" class="button button-block button-balanced" ng-disabled="ugsForm6.$invalid">
+				Submit
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+
+	</ion-view>
+    </script>	
+	<!-- UG Self-Finance----------------------------------------------------------------------->	
+
+
+	
+	<!-- PG Regular -->
+	
+	<script id="templates/pgregularpart1.html" type="text/ng-template">
+		<ion-view title="PG Regular">
+		<ion-nav-bar class="bar-positive">
+				<ion-nav-back-button class="button-clear">
+				<i class="ion-arrow-left-c"></i> Back
+				</ion-nav-back-button>
+		</ion-nav-bar>
+		
+	  <ion-content>
+		<form name="pgForm1" novalidate>  
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">First name</span>
+				<input type="text"  name="fname" ng-model="user.fname" ng-minlength="2" ng-maxlength="30" required />
+				<p ng-show="pgForm1.fname.$invalid && !pgForm1.fname.$pristine" class="help-block">Your First name is required.</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm1.lname.$invalid && !pgForm1.lname.$pristine }">
+				<span class="input-label">Last name</span>
+				<input type="text" name="lname" ng-model="user.lname" required/>
+				<p ng-show="pgForm1.lname.$invalid && !pgForm1.lname.$pristine" class="help-block">Your Last name is required.</p>
+			</label>
+			<label class="item item-input item-select">
+				<span class="input-label">Courses</span>
+				<select>
+				<option>M.A(Tamil)</option>
+				<option>M.A(English)</option>
+				<option>M.A(Economics)</option>
+				<option>M.Sc(Maths)</option>
+				<option>M.Sc(Physics)</option>
+				<option selected>M.Sc(Chemistry)</option>
+				<option>M.Sc(Zoology)</option>
+				<option>M.Sc(Botany)</option>
+				<option>B.Com</option>
+				<option>BBA</option>
+				</select>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Gender</span>
+				<input type="radio" name="gender" ng-model="user.gender" value="Male" ng-required="!user.gender">
+				<div class="item-content">
+				Male
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="gender" ng-model="user.gender" value="Female" ng-required="!user.gender">
+				<div class="item-content">
+				Female
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">DOB</span>
+				<input type="date" required/>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm1.email.$invalid && !pgForm1.email.$pristine }">
+				<span class="input-label">Email ID</span>
+				<input type="email"  name="email" ng-model="user.email" required/>
+				<p ng-show="pgForm1.email.$invalid && !pgForm1.email.$pristine" class="help-block">Enter a valid email.</p>
+			</label>
+			<label class="item item-input" ng-class="{'has-error : pgForm1.phone.$invalid'}">
+				<span class="input-label">Mobile Number</span>
+				<input type="text" ng-pattern="[789][0-9]{9}" ng-minlength="10" ng-maxlength="10" ng-model="user.phone" required/>
+			</label>
+			
+			  <!--<button class="button button-block button-positive" ng-click="openPart2()">Next</button>-->
+			  <a ui-sref="eventmenu.pgregularpart2" class="button button-block button-assertive" ng-disabled="pgForm1.$invalid">
+				Next
+			</a>
+		
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+
+    </script>
+	
+
+	<script id="templates/pgregularpart2.html" type="text/ng-template">
+		<ion-view title="PG Regular">
+	  <ion-content>
+		<form name="pgForm2" novalidate>
+		  <div class="list">
+			<label class="item item-input item-select">
+				<span class="input-label">Community</span>
+				<select name="community" ng-model="user.community" ng-dropdown required>
+				<option ng-option value="bc">BC</option>
+				<option ng-option value="mbc">MBC</option>
+				<option ng-option value="sc">SC</option>
+				<option ng-option value="st">ST</option>
+				<option ng-option value="bc(m)" selected>BC(M)</option>
+				<option ng-option value="sc(a)">SC(A)</option>
+				<option ng-option value="fc">FC</option>
+				<option ng-option value="oc">OC</option>
+				<option ng-option value="dnt">DNT</option>
+				</select>
+			</label>
+			<label class="item item-input" id="sc" ng-if="user.community == 'sc'" >
+				<span class="input-label">SC Code Number</span>
+				<input type="number" name="code1" ng-model="user.code1" required/>
+				<p ng-show="pgForm2.code1.$invalid && !pgForm2.code1.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" id="st" ng-if="user.community == 'st'" >
+				<span class="input-label">ST Code Number</span>
+				<input type="number" name="code2" ng-model="user.code2" required/>
+				<p ng-show="pgForm2.code2.$invalid && !pgForm2.code2.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm2.native.$invalid && !pgForm2.native.$pristine }">
+				<span class="input-label">Native District</span>
+				<input type="text" name="native" ng-model="user.native" required/>
+				<p ng-show="pgForm2.native.$invalid && !pgForm2.native.$pristine" class="help-block">Your Native District is required.</p>
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Religion</span>
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Hindu
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Christian
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Muslim
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm2.nation.$invalid && !pgForm2.nation.$pristine }">
+				<span class="input-label">Nationality</span>
+				<input type="text" name="nation" ng-model="user.nation" required/>
+				<p ng-show="pgForm2.nation.$invalid && !pgForm2.nation.$pristine" class="help-block">Your Nationality is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : upForm2.tounge.$invalid && !pgForm2.tounge.$pristine }">
+				<span class="input-label">Mother Tounge</span>
+				<input type="text" name="tounge" ng-model="user.tounge" required/>
+				<p ng-show="pgForm2.tounge.$invalid && !pgForm2.tounge.$pristine" class="help-block">Your Mother Tounge is required</p>
+			</label>
+			 <a ui-sref="eventmenu.pgregularpart3" class="button button-block button-assertive" ng-disabled="pgForm2.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+	</ion-view>
+    </script>
+	
+	
+	<script id="templates/pgregularpart3.html" type="text/ng-template">
+		<ion-view title="PG Regular">
+		<ion-content>
+		<form name="pgForm3" novalidate>
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm3.address.$invalid && !pgForm3.address.$pristine }">
+				<span class="input-label">Address</span>
+				<textarea name="address" ng-model="user.address" required></textarea>
+				<p ng-show="pgForm3.address.$invalid && !pgForm3.address.$pristine" class="help-block">Your Address is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Pin Code</span>
+				<input type="number" ng-minlength="6" name="pincode" ng-model="user.pincode" required/>
+				<p ng-show="pgForm3.pincode.$invalid && !pgForm3.pincode.$pristine" class="help-block">Pincode is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm3.school.$invalid && !pgForm3.school.$pristine }">
+				<span class="input-label">Last Studied College Name</span>
+				<input type="text" name="college" ng-model="user.college" required/>
+				<p ng-show="pgForm3.college.$invalid && !pgForm3.college.$pristine" class="help-block">College Name is required</p>
+
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm3.location.$invalid && !pgForm3.location.$pristine }">
+				<span class="input-label">Location of Last Studied College</span>
+				<input type="text" name="location" ng-model="user.location" required/>
+				<p ng-show="pgForm3.location.$invalid && !pgForm3.location.$pristine" class="help-block">Your College Location is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm3.degree.$invalid && !pgForm3.degree.$pristine }">
+				<span class="input-label">Qualifying Degree</span>
+				<input type="text" name="degree" ng-model="user.degree" required/>
+				<p ng-show="pgForm3.degree.$invalid && !pgForm3.degree.$pristine" class="help-block">Your Degree is required</p>>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Reason for break study, If any</span>
+				<!--<input type="text">-->
+				<textarea></textarea>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Month and Year of passing final Semester</span>
+			</label>
+			<label class="item item-input">	
+				<input type="text" placeholder="Enter Month and Year only" required/>
+			</label>
+			<br><br>	
+			 <a ui-sref="eventmenu.pgregularpart4" class="button button-block button-energized" ng-disabled="pgForm3.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/pgregularpart4.html" type="text/ng-template">
+		<ion-view title="PG Regular">
+				<div class="modal4">
+		<ion-header-bar class="bar bar-header bar-energized">
+		</ion-header-bar>
+		<ion-content>
+		<form name="pgForm4">
+		  <div class="list">
+			<label class="item item-radio">
+				<br>
+				<b><center><span class="input-label">Note : Enter Only Part3 Subject Marks</span>
+				<span class="input-label">Part3 includes Major and Ancillary subject with practicals</span>
+				<span class="input-label">Please include Major and Ancillary subject with practicals</span></center></b>
+				<br>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm4.max.$invalid && !pgForm4.max.$pristine }">
+				<span class="input-label">Maximum Mark for Part3</span>
+				<input type="number" name="max" ng-model="user.max" required/>
+				<p ng-show="pgForm4.max.$invalid && !pgForm4.max.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm4.m1.$invalid && !pgForm4.m1.$pristine }">
+				<span class="input-label">Total Mark obtained for I sem</span>
+				<input type="number" name="m1" ng-model="user.m1" required/>
+				<p ng-show="pgForm4.m1.$invalid && !pgForm4.m1.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm4.m2.$invalid && !pgForm4.m2.$pristine }">
+				<span class="input-label">Total Mark obtained  for II sem</span>
+				<input type="number" name="m2" ng-model="user.m2" required/>
+				<p ng-show="pgForm4.m2.$invalid && !pgForm4.m2.$pristine" class="help-block">Mark is required</p>>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm4.m3.$invalid && !pgForm4.m3.$pristine }">
+				<span class="input-label">Total Mark obtained  for III sem</span>
+				<input type="number" name="m3" ng-model="user.m3" required/>
+				<p ng-show="pgForm4.m3.$invalid && !pgForm4.m3.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm4.m4.$invalid && !pgForm4.m4.$pristine }">
+				<span class="input-label">Total Mark obtained  for IV sem</span>
+				<input type="text" name="m4" ng-model="user.m4" required/>
+				<p ng-show="pgForm4.m4.$invalid && !pgForm4.m4.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm4.m5.$invalid && !pgForm4.m5.$pristine }">
+				<span class="input-label">Total Mark obtained  for ALL sem</span>
+				<input type="number" name="m5" ng-model="user.m5" required/>
+				<p ng-show="pgForm4.m5.$invalid && !pgForm4.m5.$pristine" class="help-block">Mark is required</p>
+			</label>
+			 <a ui-sref="eventmenu.pgregularpart5" class="button button-block button-energized" ng-disabled="pgForm4.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+		<script id="templates/pgregularpart5.html" type="text/ng-template">
+		<ion-view title="PG Regular">
+	  <ion-content>
+		<form name="pgForm5">
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : pgForm5.total.$invalid && !pgForm5.total.$pristine }">
+				<span class="input-label">Total percentage for ALL sem</span>
+				<input type="number" name="total" ng-model="user.total" required/>
+				<p ng-show="pgForm5.total.$invalid && !pgForm4.total.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Total arrear papers for ALL sem</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Any Sports Certificate</span>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					District
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					State
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					National
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					No
+				</li>
+			</ul>
+			</label>
+			<br><br>
+			<a ui-sref="eventmenu.pgregularpart6" class="button button-block button-balanced" ng-disabled="pgForm5.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/pgregularpart6.html" type="text/ng-template">
+		<ion-view title="PG Regular">
+			<div class="modal5">
+		<ion-header-bar class="bar bar-header bar-balanced">
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="pgForm6" ng-submit="doLogin()" novalidate>
+		  <div class="list">
+			<label class="item item-radio">
+				<br><br><br>
+				<span class="input-label">Do you need Hostel Accommodation</span>
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				Yes
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				No
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" name="declare" ng-model="user.declare" value="Declaration" ng-required="!user.declare"/>
+					</label>
+					<br><br>
+					<div class="item-content">
+						<pre>I declare that the particulars given above are true.
+						I will abide by the rules and regulations of the College,if admitted.</pre>
+					</div>
+				<br>
+				<br>
+								
+				</li>
+				
+			</label>	
+			
+			  <!--<button class="button button-block button-positive" ng-click="openPart6()">Next</button>-->
+			  <!--<button class="button button-block button-balanced" ng-submit="doLogin()" type="submit" ng-disabled="pgForm6.$invalid">Submit</button>-->
+			<a ui-sref="eventmenu.SuccessPage" class="button button-block button-balanced" ng-disabled="pgForm6.$invalid">
+				Submit
+			</a>
+			
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+
+	</ion-view>
+    </script>	
+	<!-- PG Regular----------------------------------------------------------------------->
+	
+	<!-- PG Self-Finance -->
+	
+	<script id="templates/pgselfpart1.html" type="text/ng-template">
+		<ion-view title="PG Self-Finance">
+		<ion-nav-bar class="bar-positive">
+				<ion-nav-back-button class="button-clear">
+				<i class="ion-arrow-left-c"></i> Back
+				</ion-nav-back-button>
+		</ion-nav-bar>
+	  <ion-content>
+		<form name="pgsForm1">  
+		  <div class="list">
+			<label class="item item-input">
+				<span class="input-label">First name</span>
+				<input type="text"  name="fname" ng-model="user.fname" ng-minlength="2" ng-maxlength="30" required />
+				<p ng-show="pgsForm1.fname.$invalid && !pgsForm1.fname.$pristine" class="help-block">Your First name is required.</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm1.lname.$invalid && !pgsForm1.lname.$pristine }">
+				<span class="input-label">Last name</span>
+				<input type="text" name="lname" ng-model="user.lname" required/>
+				<p ng-show="pgsForm1.lname.$invalid && !pgsForm1.lname.$pristine" class="help-block">Your Last name is required.</p>
+			</label>
+			<label class="item item-input item-select">
+				<span class="input-label">Courses</span>
+				<select>
+				<option>MHRD</option>
+				<option>MFC</option>
+				<option>M.Sc(Microbiology)</option>
+				<option>M.Sc(Computer Science)</option>
+				<option selected>M.Sc(Chemistry(Special))</option>
+				</select>
+			</label>
+			<label class="item item-radio">
+				<span class="input-label">Gender</span>
+				<input type="radio" name="gender" ng-model="user.gender" value="Male" ng-required="!user.gender">
+				<div class="item-content">
+				Male
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="gender" ng-model="user.gender" value="Female" ng-required="!user.gender">
+				<div class="item-content">
+				Female
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">DOB</span>
+				<input type="date" required/>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm1.email.$invalid && !pgsForm1.email.$pristine }">
+				<span class="input-label">Email ID</span>
+				<input type="email"  name="email" ng-model="user.email" required/>
+				<p ng-show="pgsForm1.email.$invalid && !pgsForm1.email.$pristine" class="help-block">Enter a valid email.</p>
+			</label>
+			<label class="item item-input" ng-class="{'has-error : pgsForm1.phone.$invalid'}">
+				<span class="input-label">Mobile Number</span>
+				<input type="text" ng-pattern="[789][0-9]{9}" ng-minlength="10" ng-maxlength="10" ng-model="user.phone" required/>
+			</label>
+			
+			  <!--<button class="button button-block button-positive" ng-click="openPart2()">Next</button>-->
+			  <a ui-sref="eventmenu.pgselfpart2" class="button button-block button-assertive" ng-disabled="pgsForm1.$invalid">
+				Next
+			</a>
+		
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+
+    </script>
+	
+
+	<script id="templates/pgselfpart2.html" type="text/ng-template">
+		<ion-view title="PG Self-Finance">
+	  <ion-content>
+		<form name="pgsForm2">
+		  <div class="list">
+			<label class="item item-input item-select">
+				<span class="input-label">Community</span>
+				<select name="community" ng-model="user.community" ng-dropdown required>
+				<option ng-option value="bc">BC</option>
+				<option ng-option value="mbc">MBC</option>
+				<option ng-option value="sc">SC</option>
+				<option ng-option value="st">ST</option>
+				<option ng-option value="bc(m)" selected>BC(M)</option>
+				<option ng-option value="sc(a)">SC(A)</option>
+				<option ng-option value="fc">FC</option>
+				<option ng-option value="oc">OC</option>
+				<option ng-option value="dnt">DNT</option>
+				</select>
+			</label>
+			<label class="item item-input" id="sc" ng-if="user.community == 'sc'" >
+				<span class="input-label">SC Code Number</span>
+				<input type="number" name="code1" ng-model="user.code1" required/>
+				<p ng-show="pgsForm2.code1.$invalid && !pgsForm2.code1.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" id="st" ng-if="user.community == 'st'" >
+				<span class="input-label">ST Code Number</span>
+				<input type="number" name="code2" ng-model="user.code2" required/>
+				<p ng-show="pgsForm2.code2.$invalid && !pgsForm2.code2.$pristine" class="help-block">Code number is required.</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm2.native.$invalid && !pgsForm2.native.$pristine }">
+				<span class="input-label">Native District</span>
+				<input type="text" name="native" ng-model="user.native" required/>
+				<p ng-show="pgsForm2.native.$invalid && !pgsForm2.native.$pristine" class="help-block">Your Native District is required.</p>
+			</label>
+			<label class="item item-radio">
+				<!--<div class="input-label">
+				Gender
+				</div>-->
+				<span class="input-label">Religion</span>
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Hindu
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Christian
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="religion" ng-model="user.religion" value="Hindu" ng-required="!user.religion">
+				<div class="item-content">
+				Muslim
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm2.nation.$invalid && !pgsForm2.nation.$pristine }">
+				<span class="input-label">Nationality</span>
+				<input type="text" name="nation" ng-model="user.nation" required/>
+				<p ng-show="pgsForm2.nation.$invalid && !pgsForm2.nation.$pristine" class="help-block">Your Nationality is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm2.tounge.$invalid && !pgsForm2.tounge.$pristine }">
+				<span class="input-label">Mother Tounge</span>
+				<input type="text" name="tounge" ng-model="user.tounge" required/>
+				<p ng-show="pgsForm2.tounge.$invalid && !pgsForm2.tounge.$pristine" class="help-block">Your Mother Tounge is required</p>
+			</label>
+			 <a ui-sref="eventmenu.pgselfpart3" class="button button-block button-assertive" ng-disabled="pgsForm2.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+	</ion-view>
+    </script>
+	
+	
+	<script id="templates/pgselfpart3.html" type="text/ng-template">
+		<ion-view title="PG Self-Finance">
+		<ion-content>
+		<form name="pgsForm3">
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm3.address.$invalid && !pgsForm3.address.$pristine }">
+				<span class="input-label">Address</span>
+				<textarea name="address" ng-model="user.address" required></textarea>
+				<p ng-show="pgsForm3.address.$invalid && !pgsForm3.address.$pristine" class="help-block">Your Address is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Pin Code</span>
+				<input type="number" ng-minlength="6" name="pincode" ng-model="user.pincode" required/>
+				<p ng-show="pgsForm3.pincode.$invalid && !pgsForm3.pincode.$pristine" class="help-block">Pincode is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm3.school.$invalid && !pgsForm3.school.$pristine }">
+				<span class="input-label">Last Studied College Name</span>
+				<input type="text" name="college" ng-model="user.college" required/>
+				<p ng-show="pgsForm3.college.$invalid && !pgsForm3.college.$pristine" class="help-block">College Name is required</p>
+
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm3.location.$invalid && !pgsForm3.location.$pristine }">
+				<span class="input-label">Location of Last Studied College</span>
+				<input type="text" name="location" ng-model="user.location" required/>
+				<p ng-show="pgsForm3.location.$invalid && !pgsForm3.location.$pristine" class="help-block">Your College Location is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm3.degree.$invalid && !pgsForm3.degree.$pristine }">
+				<span class="input-label">Qualifying Degree</span>
+				<input type="text" name="degree" ng-model="user.degree" required/>
+				<p ng-show="pgsForm3.degree.$invalid && !pgsForm3.degree.$pristine" class="help-block">Your Degree is required</p>>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Reason for break study, If any</span>
+				<!--<input type="text">-->
+				<textarea></textarea>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Month and Year of passing final Semester</span>
+			</label>
+			<label class="item item-input">	
+				<input type="text" placeholder="Enter Month and Year only">
+			</label>
+			<br><br>	
+			 <a ui-sref="eventmenu.pgselfpart4" class="button button-block button-energized" ng-disabled="pgsForm3.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/pgselfpart4.html" type="text/ng-template">
+		<ion-view title="PG Self-Finance">
+		<ion-content>
+		<form name="pgsForm4">
+		  <div class="list">
+			<label class="item item-radio">
+				<br>
+				<b><center><span class="input-label">Note : Enter Only Part3 Subject Marks</span>
+				<span class="input-label">Part3 includes Major and Ancillary subject with practicals</span>
+				<span class="input-label">Please include Major and Ancillary subject with practicals</span></center></b>
+				<br>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm4.max.$invalid && !pgsForm4.max.$pristine }">
+				<span class="input-label">Maximum Mark for Part3</span>
+				<input type="number" name="max" ng-model="user.max" required/>
+				<p ng-show="pgsForm4.max.$invalid && !pgsForm4.max.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm4.m1.$invalid && !pgsForm4.m1.$pristine }">
+				<span class="input-label">Total Mark obtained for I sem</span>
+				<input type="number" name="m1" ng-model="user.m1" required/>
+				<p ng-show="pgsForm4.m1.$invalid && !pgsForm4.m1.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm4.m2.$invalid && !pgsForm4.m2.$pristine }">
+				<span class="input-label">Total Mark obtained  for II sem</span>
+				<input type="number" name="m2" ng-model="user.m2" required/>
+				<p ng-show="pgsForm4.m2.$invalid && !pgsForm4.m2.$pristine" class="help-block">Mark is required</p>>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm4.m3.$invalid && !pgsForm4.m3.$pristine }">
+				<span class="input-label">Total Mark obtained  for III sem</span>
+				<input type="number" name="m3" ng-model="user.m3" required/>
+				<p ng-show="pgsForm4.m3.$invalid && !pgsForm4.m3.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm4.m4.$invalid && !pgsForm4.m4.$pristine }">
+				<span class="input-label">Total Mark obtained  for IV sem</span>
+				<input type="text" name="m4" ng-model="user.m4" required/>
+				<p ng-show="pgsForm4.m4.$invalid && !pgsForm4.m4.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm4.m5.$invalid && !pgsForm4.m5.$pristine }">
+				<span class="input-label">Total Mark obtained  for ALL sem</span>
+				<input type="number" name="m5" ng-model="user.m5" required/>
+				<p ng-show="pgsForm4.m5.$invalid && !pgsForm4.m5.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<!--<label class="item item-input">
+				<span class="input-label">Total obtained  for ALL sem</span>
+				<input type="number">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Total arrear papers for ALL sem</span>
+				<input type="number">
+			</label>-->
+			 <a ui-sref="eventmenu.pgselfpart5" class="button button-block button-energized" ng-disabled="pgsForm4.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+		<script id="templates/pgselfpart5.html" type="text/ng-template">
+		<ion-view title="PG Self-Finance">
+	  <ion-content>
+		<form name="pgsForm5">
+		  <div class="list">
+			<label class="item item-input" ng-class="{ 'has-error' : pgsForm5.total.$invalid && !pgsForm5.total.$pristine }">
+				<span class="input-label">Total percentage for ALL sem</span>
+				<input type="number" name="total" ng-model="user.total" required/>
+				<p ng-show="pgsForm5.total.$invalid && !pgsForm5.total.$pristine" class="help-block">Mark is required</p>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Total arrear papers for ALL sem</span>
+				<input type="number">
+			</label>
+			<!--<label class="item item-input">
+				<span class="input-label">Mark3 for Part3</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Total Mark</span>
+				<input type="text">
+			</label>-->
+			<label class="item item-input">
+				<span class="input-label">Any Sports Certificate</span>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					District
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					State
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					National
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					No
+				</li>
+			</ul>
+			</label>
+			<br><br>
+			<a ui-sref="eventmenu.pgselfpart6" class="button button-block button-balanced" ng-disabled="pgsForm5.$invalid">
+				Next
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+	</ion-view>
+    </script>
+	
+	<script id="templates/pgselfpart6.html" type="text/ng-template">
+		<ion-view title="PG Self-Finance">
+			<div class="modal5">
+		<ion-header-bar class="bar bar-header bar-balanced">
+	  </ion-header-bar>
+	  <ion-content>
+		<form name="pgsForm6" ng-submit="doLogin()">
+		  <div class="list">
+			<label class="item item-radio">
+				<br><br><br>
+				<span class="input-label">Do you need Hostel Accommodation</span>
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				Yes
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="hostel" ng-model="user.hostel" value="Yes" ng-required="!user.hostel">
+				<div class="item-content">
+				No
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label>
+			<ul class="list">
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" name="declare" ng-model="user.declare" value="Declaration" ng-required="!user.declare"/>
+					</label>
+					<br><br>
+					<div class="item-content">
+						<pre>I declare that the particulars given above are true.
+						I will abide by the rules and regulations of the College,if admitted.</pre>
+					</div>
+				<br>
+				<br>
+								
+				</li>
+				
+			</label>	
+				
+			<!--<label class="item">
+			  <!--<button class="button button-block button-positive" ng-click="openPart6()">Next</button>-->
+			  <!--<button class="button button-block button-balanced" ng-submit="doLogin()" type="submit">Submit</button>
+			</label>-->
+			<a ui-sref="eventmenu.SuccessPage" class="button button-block button-balanced" ng-disabled="pgsForm6.$invalid">
+				Submit
+			</a>
+		  </div>
+		</form>
+	  </ion-content>
+	</div>
+
+
+	</ion-view>
+    </script>	
+	<!-- PG Self-Finance----------------------------------------------------------------------->
+	
+	<!-- Success Page-->
+	 <script id="templates/SuccessPage.html" type="text/ng-template">
+		<ion-view title="Thiagarajar College">
+			<ion-nav-buttons side="left">
+				<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+			</ion-nav-buttons>
+
+	  
+		<!--Header -->
+		<ion-content class="has-header">
+			<br><br>
+			<div class="card">
+
+				<center>
+					<img src="img/i2.png"/>
+					<h2>Thiagarajar College</h2>
+					<!--<p>Back off, man. I'm a scientist.</p>-->
+				</center>
+			</div>
+			<br><br>
+		<div class="list">
+						<center><p><b><font size="5">Thank you!!</font></b></p></center>
+						<center><p><b><font size="5">Your Form has been submitted Successfully.</font></b></p></center><br><br>
+		</div>
+		</ion-content>
+	</ion-view>
+
+    </script>
+	
+	
+	
+	<script id="templates/attendees.html" type="text/ng-template">
+      <ion-view view-title="Check Status">
+        <ion-content>
+        
+        </ion-content>
+      </ion-view>
+    </script>
+
+  </body>
+</html>
