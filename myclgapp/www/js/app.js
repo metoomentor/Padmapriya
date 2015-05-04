@@ -82,7 +82,7 @@ var validation = angular.module('ionicApp', ['ionic'])
       views: {
         'menuContent' :{
           templateUrl: "templates/ugregularpart6.html",
-          controller: "CheckinCtrl"
+          controller: "sucCtrl"
         }
       }
     })
@@ -312,11 +312,76 @@ var validation = angular.module('ionicApp', ['ionic'])
   $urlRouterProvider.otherwise("/event/about");
 })
 
-.controller('MainCtrl', function($scope, $ionicSideMenuDelegate) {
+.controller('MainCtrl', function($scope, $ionicSideMenuDelegate, $location) {
   
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
+  
+ /* $scope.getData = [
+  {
+  fname : '',
+  lname : '',
+  gender : '',
+  email : '',
+  phone : ''
+  }
+  ];*/
+  
+  $scope.ugrsubmit = function()
+  {
+   if (!$scope.ugRegular.$invalid) {
+        console.log('Valid form submission');
+    }
+  }
+  
+})
+
+	.controller('sucCtrl', function() {
+  
+  $scope.ugrsubmit = function()
+  {
+   if (!$scope.ugRegular.$invalid) {
+        console.log('Valid form submission');
+    }
+  }
+  
+})
+
+
+	/*.controller('MainCtrl', ['$scope','$location',function($scope, $location,$ionicSideMenuDelegate]) {
+  
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+	};
+	$scope.ugrsubmit = function()
+	{
+	$location.path('templates/SuccessPage.html');
+	}
+  
+})*/
+
+
+
+
+
+.controller('successCtrl', function($scope, $ionicSideMenuDelegate) {
+   
+  $scope.getData = [
+  {
+  fname : '',
+  lname : '',
+  gender : '',
+  email : '',
+  phone : ''
+  }
+  ];
+  
+  $scope.ugrsubmit = function(form)
+  {
+  alert("SuccessPage");
+  }
+  
 })
 
 .controller('CheckinCtrl', function($scope, $ionicPopup) {
