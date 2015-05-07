@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
 
     var fab = document.getElementById('fab');
     fab.addEventListener('click', function() {
-        location.href = 'https://twitter.com/sentenwin';
+        location.href = 'https://twitter.com/padmapriyaru';
     });
 
     // .fromTemplate() method
